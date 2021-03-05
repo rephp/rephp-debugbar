@@ -27,7 +27,7 @@ final class debugbar implements debugInterface
      */
     public function __construct()
     {
-        $this->startTime   = microtime(TRUE);
+        $this->startTime   = microtime(true);
         $this->startMemory = memory_get_usage();
     }
 
@@ -42,7 +42,7 @@ final class debugbar implements debugInterface
         empty($info) && $info = $this->getDebugInfo();
         //判断环境是cli还是web
         $bootstrap = 'rephp\\debugbar\\bootstrap\\' . (defined('CLI_URI') ? 'cliBootStrap' : 'webBootStrap');
-        container::getContainer()->bind('coreDebugbar', $bootstrap)->run($info);
+        return container::getContainer()->bind('coreDebugbar', $bootstrap)->run($info);
     }
 
     /**
@@ -87,7 +87,7 @@ final class debugbar implements debugInterface
     /**
      * 输出调试信息
      */
-    public function getInfo()
+    public function getDebugInfo()
     {
         return [
             'list_info'  => [
@@ -97,7 +97,7 @@ final class debugbar implements debugInterface
                 'event' => ['name' => '事件', 'data' => $this->getEvent()],
             ],
             'other_info' => [
-                'runtime' => round(microtime(TRUE) - $this->startTime, 6) . 'S',
+                'runtime' => round(microtime(true) - $this->startTime, 6) . 'S',
                 'memory'  => round((memory_get_usage() - $this->startMemory) / 1024, 6) . 'KB',
             ],
         ];

@@ -14,7 +14,7 @@
                 <?php
                 foreach($info['list_info'] as $index=>$val){
                 ?>
-                    <div <?php if($index>0){ echo  ' style="display:none;"'; }?> >
+                    <div <?php if($index>0){ echo  ' style="display:none;"'; }else{ echo  ' style="display:block;"';}?> >
                         <ol style="padding: 0; margin:0">
                             <?php
                             if (is_array($val['data'])) {
@@ -36,7 +36,7 @@
 </div>
 
 <div id="debugbar_open" style="height:30px;float:right;text-align:right;overflow:hidden;position:fixed;bottom:0;right:0;color:#000;line-height:30px;cursor:pointer;">
-    <div style="background:#232323;color:#FFF;padding:0 6px;float:right;line-height:30px;font-size:14px"><?php echo $info['runtime'];?></div>
+    <div style="background:#232323;color:#FFF;padding:0 6px;float:right;line-height:30px;font-size:14px"><?php echo $info['other_info']['runtime'];?></div>
     <img width="30" style="" title="ShowPageTrace" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAQAAAD/5HvMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAHdElNRQflAwUIAAoU5RLVAAACDklEQVRo3u2XTUhUURSAv8lxUEcYiRwQw0UJCgkxFIQEaRhauSsXrVrXTih3GhVEiyhaubBV0cLFQIW1KBRaRFgSughCdJGCRC38i3EYmZnXwmmYmfcuvsH37n2L853dvY/zPu499w8EQRAEQRCEQBHyJEeUsLIvxw5Z98nC7j9V0swLTlPj2JdnntssePAX19Ryj20sx8gzR48ns1AFffxU6nzlvF4ZaOE9WYXOF/p069Ryn02lzgXdOnCRJYXOLP36ddp4Sz44OhHushUcHRhkUVE7RnSO8So4pQx1jPHXcd/RvtD3uOwwXXnm9G+De7STtOlkmeWsF8mrP1wbGGLQ1mqRZYgrZW0haphmmrS/4zPAsmM5p2yRJslJv4/W4w7TpYo3JDjkr04jt9h1JZNjkk7/Lx5nmGeTjYrI2HQyvKTdbxmAMDGaKiLO64pRS/GMVh06zvSzWqazzThxczpRkmXjs85TYuZ04BprJTp/eEi9SZ3DTJEr6qwxStSkDtzkd1FnhWEiZnWO8qGos8wNT954B2KE9YLOd677vSfvTwcfCzrfuKr7MWgnxJ3CFe0TlxTPaK2c4jMWFjP0mp8sqOMBGSze0R0EHTjHAhZJEuZrByDGY3JMcsK0yH8G+MFzPdcLN8R5xARtfqWvfnftYosn/DI6KCU00sER0xKlhIKxzAVBEARBEARt/ANDylGF3EpI/AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0xOVQwMzozOToxNyswMDowMM1PNzEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDEtMDhUMTg6NDA6MjUrMDA6MDBmdtPnAAAAIHRFWHRzb2Z0d2FyZQBodHRwczovL2ltYWdlbWFnaWNrLm9yZ7zPHZ0AAAAYdEVYdFRodW1iOjpEb2N1bWVudDo6UGFnZXMAMaf/uy8AAAAXdEVYdFRodW1iOjpJbWFnZTo6SGVpZ2h0ADc2S/X56QAAABZ0RVh0VGh1bWI6OkltYWdlOjpXaWR0aAA3NrNaOWQAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTU0Njk3MjgyNa9x+oAAAAAQdEVYdFRodW1iOjpTaXplADUxMkKtrpyRAAAAWnRFWHRUaHVtYjo6VVJJAGZpbGU6Ly8vZGF0YS93d3dyb290L3d3dy5lYXN5aWNvbi5uZXQvY2RuLWltZy5lYXN5aWNvbi5jbi9maWxlcy8xMTEvMTExNjI5Ni5wbmdMTlbTAAAAAElFTkSuQmCC">
 </div>
 
