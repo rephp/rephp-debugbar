@@ -41,7 +41,7 @@ final class debugbar implements debugInterface
     {
         empty($info) && $info = $this->getDebugInfo();
         //判断环境是cli还是web
-        $bootstrap = 'rephp\\debugbar\\bootstrap\\' . (defined('CLI_URI') ? 'cliBootStrap' : 'webBootStrap');
+        $bootstrap = 'rephp\\debugbar\\bootstrap\\' . (defined('CLI_URI') ? 'cliBootStrap' : 'consoleBootStrap');
         return container::getContainer()->bind('coreDebugbar', $bootstrap)->run($info);
     }
 
@@ -81,7 +81,8 @@ final class debugbar implements debugInterface
      */
     public function getEvent()
     {
-        return container::getContainer()->get('event')->getAllEventName();
+        $event = container::getContainer()->get('event');
+        return $event::getAllEventName();
     }
 
     /**

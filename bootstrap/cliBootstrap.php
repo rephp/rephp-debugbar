@@ -17,14 +17,21 @@ final class cliBootstrap implements debugInterface
      */
     public function run($info)
     {
+        $result = '-------------------'."\n";
         $info['list_info'] = (array)$info['list_info'];
         foreach($info['list_info'] as $val){
-            print_r($val);
+            $result .= $val['name'].':'."\n";
+            $result .= print_r(['data'], 1);
+            $result .= '-------------------'."\n";
         }
         //3.计算执行总时间
-        echo '运行时间:' . $info['other_info']['runtime'] . '<br>' . "\n";
+        $result .= '运行时间:' . $info['other_info']['runtime']. "\n";
+        $result .= '-------------------'."\n";
         //4.计算执行消耗内存
-        echo '内存开销:' . $info['other_info']['memory'] . '<br>' . "\n";
+        $result .= '内存开销:' . $info['other_info']['memory']. "\n";
+        $result .= '-------------------';
+
+        return $result;
     }
 
 }
