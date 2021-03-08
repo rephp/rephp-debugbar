@@ -18,18 +18,21 @@ final class consoleBootstrap implements debugInterface
     public function run($info)
     {
         $result = '<script>'."\n";
+        $result .= 'console.clear();'."\n";
         $info['list_info'] = (array)$info['list_info'];
         foreach($info['list_info'] as $val){
+            $result .= "console.group();\n";
             $result .= 'console.log(\''.$val['name'].':'."');\n";
-            $result .= 'console.log('.json_encode($val['data']).");\n";
-            $result .= "console.log(\"-------------------\");\n";
+            $result .= 'console.debug('.json_encode($val['data']).");\n";
+            $result .= "console.groupEnd();\n";
+            $result .= "console.info(\"-------------------\");\n";
         }
         //3.计算执行总时间
-        $result .= 'console.log("运行时间:' . $info['other_info']['runtime']. "\\\n\");";
-        $result .= "console.log(\"-------------------\");\n";
+        $result .= 'console.warn("运行时间:' . $info['other_info']['runtime']. "\\\n\");";
+        $result .= "console.info(\"-------------------\");\n";
         //4.计算执行消耗内存
-        $result .= 'console.log("内存开销:' . $info['other_info']['memory']. "\\\n\");";
-        $result .= "console.log(\"-------------------\");\n";
+        $result .= 'console.warn("内存开销:' . $info['other_info']['memory']. "\\\n\");";
+        $result .= "console.info(\"-------------------\");\n";
         $result .= '</script>'."\n";
         return $result;
     }
