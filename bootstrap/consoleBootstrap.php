@@ -23,7 +23,7 @@ final class consoleBootstrap implements debugInterface
         foreach($info['list_info'] as $val){
             $result .= "console.group();\n";
             $result .= 'console.log(\''.$val['name'].':'."');\n";
-            $result .= 'console.debug('.json_encode($val['data']).");\n";
+            $result .= 'console.dir('.json_encode($val['data']).");\n";
             $result .= "console.groupEnd();\n";
             $result .= "console.info(\"-------------------\");\n";
         }
