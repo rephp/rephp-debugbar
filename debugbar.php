@@ -39,7 +39,7 @@ final class debugbar implements debugInterface
      */
     public function run($info = '')
     {
-        empty($info) && $info = $this->getDebugInfo();
+        empty($info) && $info = $this->getAllInfo();
         //判断环境是cli还是web
         $bootstrap = 'rephp\\debugbar\\bootstrap\\' . (defined('CLI_URI') ? 'cliBootStrap' : 'consoleBootStrap');
         return container::getContainer()->bind('coreDebugbar', $bootstrap)->run($info);
@@ -49,7 +49,7 @@ final class debugbar implements debugInterface
      * 获取php加载的文件
      * @return string[]
      */
-    public function getFiles()
+    public function getFileInfo()
     {
         $files = get_included_files();
         foreach ($files as $key => $file) {
@@ -63,7 +63,7 @@ final class debugbar implements debugInterface
      * 获取执行的sql命令
      * @return string[]
      */
-    public function getSql()
+    public function getSqlInfo()
     {
         return [];
     }
@@ -71,7 +71,7 @@ final class debugbar implements debugInterface
     /**
      * 获取基本信息
      */
-    public function getBasic()
+    public function getBasicInfo()
     {
 
     }
@@ -79,23 +79,33 @@ final class debugbar implements debugInterface
     /**
      * 获取事件信息
      */
-    public function getEvent()
+    public function getEventInfo()
     {
         $event = container::getContainer()->get('event');
         return $event::getAllEventName();
     }
 
     /**
-     * 输出调试信息
+     * 获取输出
      */
     public function getDebugInfo()
     {
+        $debug = container::getContainer()->get('debug');
+        return $debug::getDebugInfo();
+    }
+
+    /**
+     * 输出调试信息
+     */
+    public function getAllInfo()
+    {
         return [
             'list_info'  => [
-                'basic' => ['name' => '基本信息', 'data' => $this->getBasic()],
-                'files' => ['name' => '文件', 'data' => $this->getFiles()],
-                'sqls'  => ['name' => 'SQL', 'data' => $this->getSql()],
-                'event' => ['name' => '事件', 'data' => $this->getEvent()],
+                'basic' => ['name' => '基本信息', 'data' => $this->getBasicInfo()],
+                'files' => ['name' => '文件', 'data' => $this->getFileInfo()],
+                'sqls'  => ['name' => 'SQL', 'data' => $this->getSqlInfo()],
+                'event' => ['name' => '事件', 'data' => $this->getEventInfo()],
+                'message'=>['name' => '调试', 'data' => $this->getDebugInfo()],
             ],
             'other_info' => [
                 'runtime' => round(microtime(true) - $this->startTime, 6) . 'S',
