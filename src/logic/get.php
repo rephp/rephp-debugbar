@@ -22,7 +22,7 @@ final class get
             ['name' => 'PHP安装路径',   'value' => DEFAULT_INCLUDE_PATH],
             ['name' => '服务器IP',      'value' => GetHostByName($_SERVER['SERVER_NAME'])],
             ['name' => '服务器解译引擎', 'value' => $_SERVER['SERVER_SOFTWARE']],
-            ['name' => '页面地址',      'value' => $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']],
+            ['name' => '页面地址',      'value' => $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']],
             ['name' => '请求参数',      'value' => print_r($_REQUEST, 1)],
             ['name' => 'SERVER',      'value'  => print_r($_SERVER, 1)],
         ];
