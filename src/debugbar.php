@@ -61,11 +61,11 @@ final class debugbar implements debugInterface
      */
     public function __call($name, $params)
     {
-        if (!method_exists('set', $name)) {
-            throw new \Exception('Method ' . $name . ' is not exists in class:' . $name);
+        if (!method_exists(set::class, $name)) {
+            throw new \Exception('Method ' . $name . ' is not exists in class:set');
         }
 
-        return set::$name($params);
+        return set::$name(...$params);
         /*
         $rm = new ReflectionMethod('set', $name);
         $isStatic = $rm->isStatic();
@@ -83,11 +83,11 @@ final class debugbar implements debugInterface
      */
     public static function __callStatic($name, $params)
     {
-        if (!method_exists('set', $name)) {
-            throw new \Exception('Method ' . $name . ' is not exists in class:' . $name);
+        if (!method_exists(set::class, $name)) {
+            throw new \Exception('Method ' . $name . ' is not exists in class: set' );
         }
 
-        return set::$name($params);
+        return set::$name(...$params);
     }
 
 
