@@ -18,7 +18,7 @@ final class webBootstrap implements debugInterface
     public function run($info)
     {
         ob_start();
-        include dirname(__DIR__).'/view/debugbar.php';
+        include dirname(__DIR__) . '/view/debugbar.php';
         return ob_get_clean();
     }
 
