@@ -126,13 +126,13 @@ final class get
             ],
         ];
         //判断内存标记及用时标记
-        $allTime   = self::getTime();
-        $allTime   = array_splice($allTime, data::APP_LIFE_ALIAS, 1);
-        $allMemory = self::getMemory();
-        $allMemory = array_splice($allMemory, data::APP_LIFE_ALIAS, 1);
+        $allTimeList   = self::getTime();
+        array_pop($allTimeList);
+        $allMemoryList = self::getMemory();
+        array_pop($allMemoryList);
         //判断是否需要加载数据
-        empty($allTime)   || $result['list_info']['time']   = $allTime;
-        empty($allMemory) || $result['list_info']['memory'] = $allMemory;
+        empty($allTimeList)   || $result['list_info']['time']   = ['name' => '时间点', 'data' => $allTimeList];
+        empty($allMemoryList) || $result['list_info']['memory'] = ['name' => '内存点', 'data' => $allMemoryList];;
 
         return $result;
     }
