@@ -2,12 +2,27 @@
 这是一款适合中国php程序员使用的debugbar。
 
 主要分为数据收集接口和展示接口:
-**收集接口分为：**
-调试消息接收
-sql信息接收
-计时信息接收
-事件消息接收
-内存消息接收
+
+# 结构
++ 保存数据接口
+    + 保存调试消息
+        * msg级消息 -  $debugbar->msg('信息记录');
+	* log级消息 -  $debugbar->log('信息记录');
+	* error级消息 -  $debugbar->error('信息记录');
+	* info级消息 -  $debugbar->info('信息记录');
+    + 保存sql信息  - $debugbar->time('select * from test_table where id<100', 0.03);
+    + 保存计时信息 - $debugbar->time('test');
+    + 保存事件消息  - $debugbar->event('test' , ['事件数据信息']);
+    + 保存内存消息  - $debugbar->memery('test');
++ 获取数据接口
+    - 统一获取所有消息入口
+        * 获取运行时间 - get::getTime($tagName)
+        * 获取运行内存 - get::getMemory($tagName)
+        * 获取调试消息,传参为空代表所有消息 - get::getMessageInfo($level='') 
+        * 获取sql信息 - get::getSqlInfo()
+        * 获取事件消息 - get::getEventInfo()
+        * 获取基本信息 - get::getBasicInfo()
+        * 获取加载文件列表 - get::getFileInfo()
 ---
 **展示接口**为唯一调用入口
 
@@ -33,13 +48,13 @@ composer require "rephp/rephp-debugbar"
        print_r(\rephp\debugbar\logic\get::getMemory('test'));
  3. sql信息接收
         $debugbar = new \rephp\debugbar\debugbar();
-        $debugbar->sql('test');
+        $debugbar->sql('select * from test_table where id<100', 0.03);
         print_r(\rephp\debugbar\logic\get::getSqlInfo('test'));
         
  4. 事件信息接收
           $debugbar = new \rephp\debugbar\debugbar();
           $debugbar->event('test', ['事件信息记录']);
-          print_r(\rephp\debugbar\logic\get::getEventInfo('test'));
+          print_r(\rephp\debugbar\logic\get::getEventInfo());
   5. 调试信息接收
             $debugbar = new \rephp\debugbar\debugbar();
             $debugbar->msg('信息记录');

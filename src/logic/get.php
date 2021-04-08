@@ -55,6 +55,10 @@ final class get
      */
     public static function getMessageInfo($level = '')
     {
+        if(!empty($level)){
+            in_array($level, data::$message_type_list) || $level = '';
+        }
+
         return empty($level) ? data::$message : data::$message_level[$level];
     }
 
@@ -74,6 +78,7 @@ final class get
      */
     public static function getTime($alias = '')
     {
+        $alias = data::safeFilter($alias);
         return empty($alias) ? data::$time : data::$time[$alias];
     }
 
@@ -84,6 +89,7 @@ final class get
      */
     public static function getTimeLog($alias)
     {
+        $alias = data::safeFilter($alias);
         return data::$time_log[$alias];
     }
 
@@ -94,6 +100,7 @@ final class get
      */
     public static function getMemory($alias = '')
     {
+        $alias = data::safeFilter($alias);
         return empty($alias) ? data::$memory : data::$memory[$alias];
     }
 
@@ -104,6 +111,7 @@ final class get
      */
     public static function getMemoryLog($alias)
     {
+        $alias = data::safeFilter($alias);
         return data::$memory_log[$alias];
     }
 

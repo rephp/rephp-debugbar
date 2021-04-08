@@ -17,6 +17,17 @@ namespace rephp\debugbar\logic;
 class data
 {
     const APP_LIFE_ALIAS = '_all_life';
+
+    /**
+     * 定义message等级列表
+     */
+    public $message_type_list = [
+        'info',
+        'error',
+        'log',
+        'msg',
+    ];
+
     /**
      * @var array sql记录
      */
@@ -57,5 +68,18 @@ class data
      */
     public static $memory_log = [];
 
+    /**
+     * 安全过滤tag名字
+     * 只保留中文、数字、字母、下划线
+     * @param string $alias 关联tag名
+     * @return string
+     */
+    public function safeFilter($alias)
+    {
+        $pattern = '/[\x{4e00}-\x{9fa5}a-zA-Z0-9_]/u';
+        preg_match_all($pattern, $alias, $result);
+
+        return implode('', $result[0]);
+    }
 
 }

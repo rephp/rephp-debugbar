@@ -16,7 +16,11 @@ final class set
      */
     private static function saveMessage($msg, $level = 'msg')
     {
-        $pushData                      = ['msg' => $msg, 'level' => $level];
+        in_array($level, data::$message_type_list) || $level = 'msg';
+        $pushData                      = [
+            'msg'   => $msg,
+            'level' => $level
+        ];
         data::$message[]               = &$pushData;
         data::$message_level[$level][] = &$pushData;
         return true;
@@ -65,12 +69,15 @@ final class set
     /**
      * 记录事件
      * @param string $alias 事件名字标记
-     * @param array  $event    事件信息
+     * @param array  $event 事件信息
      * @return bool
      */
     public static function event($alias, $event = [])
     {
-        $pushData      = ['alias' => $alias, 'event' => $event];
+        $pushData      = [
+            'alias' => $alias,
+            'event' => $event
+        ];
         data::$event[] = $pushData;
 
         return true;
@@ -84,7 +91,10 @@ final class set
      */
     public static function sql($sql, $runTime = 0)
     {
-        $pushData    = ['sql' => $sql, 'run_time' => $runTime];
+        $pushData    = [
+            'sql'      => $sql,
+            'run_time' => $runTime
+        ];
         data::$sql[] = $pushData;
 
         return true;
@@ -97,11 +107,12 @@ final class set
      */
     public static function time($alias)
     {
+        $alias       = data::safeFilter($alias);
         $historyTime = get::getTimeLog($alias);
         if (empty($historyTime)) {
             data::$time_log[$alias] = microtime(true);
         } else {
-            data::$time[$alias] = round(microtime(true) - $historyTime, 6).'S';
+            data::$time[$alias] = round(microtime(true) - $historyTime, 6) . 'S';
         }
 
         return true;
@@ -114,11 +125,12 @@ final class set
      */
     public static function memery($alias)
     {
+        $alias         = data::safeFilter($alias);
         $historyMemory = get::getMemoryLog($alias);
         if (empty($historyMemory)) {
             data::$memory_log[$alias] = memory_get_usage();
         } else {
-            data::$memory[$alias] = round((memory_get_usage() - $historyMemory) / 1024, 6).'KB';
+            data::$memory[$alias] = round((memory_get_usage() - $historyMemory) / 1024, 6) . 'KB';
         }
 
         return true;
