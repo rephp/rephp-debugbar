@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "rephp\\debugbar\\": ".\\src\\"
+            "rephp\\debugbar\\": "./src/"
         }
     }
 }
