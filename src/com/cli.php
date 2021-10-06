@@ -21,7 +21,7 @@ final class cli implements debugInterface
         $info['list_info'] = (array)$info['list_info'];
         foreach($info['list_info'] as $val){
             $result .= $val['name'].':'."\n";
-            $result .= print_r(['data'], 1);
+            $result .= print_r($val['data'], 1);
             $result .= '-------------------'."\n";
         }
         //3.计算执行总时间
