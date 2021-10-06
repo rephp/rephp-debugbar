@@ -1,13 +1,13 @@
 <?php
 
-namespace rephp\debugbar\bootstrap;
+namespace rephp\debugbar\com;
 
 use rephp\debugbar\interfaces\debugInterface;
 
 /**
- * console debug bootstrap
+ * console debug 组件
  */
-final class consoleBootstrap implements debugInterface
+final class console implements debugInterface
 {
 
     /**

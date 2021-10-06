@@ -40,7 +40,7 @@ final class debugbar implements debugInterface
         $config     = require 'config/config.php';
         $isCliModel = defined('CLI_URI') ? true : $config['is_cli'];
         //判断调用驱动
-        $bootstrap  = 'rephp\\debugbar\\bootstrap\\' . ($isCliModel ? 'cliBootStrap' : 'consoleBootStrap');
+        $com  = 'rephp\\debugbar\\com\\' . ($isCliModel ? 'cli' : 'console');
         //获取日志信息
         if(empty($info)){
             //总计运行时间
@@ -49,7 +49,7 @@ final class debugbar implements debugInterface
             empty($info) && $info = get::getAllInfo();
         }
 
-        return (new $bootstrap())->run($info);
+        return (new $com())->run($info);
     }
 
     /**
