@@ -85,15 +85,17 @@ final class set
 
     /**
      * 记录SQL执行信息
-     * @param string $sql     sql字符串
-     * @param float  $runTime 运行时间
+     * @param string  $sql     sql字符串
+     * @param float   $runTime 运行时间
+     * @param boolean $isCover 是否覆盖sql历史
      * @return bool
      */
-    public static function sql($sql, $runTime = 0)
+    public static function sql($sql, $runTime = 0, $isCover = false)
     {
+        $isCover && data::$sql = [];
         $pushData    = [
             'sql'      => $sql,
-            'run_time' => $runTime
+            'run_time' => $runTime,
         ];
         data::$sql[] = $pushData;
 
