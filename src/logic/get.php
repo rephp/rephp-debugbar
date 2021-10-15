@@ -36,7 +36,7 @@ final class get
     {
         $files = get_included_files();
         foreach ($files as $key => $file) {
-            $files[$key] = $file . ' ( ' . number_format(filesize($file) / 1024, 2) . ' KB )';
+            file_exists($file) && $files[$key] = $file . ' ( ' . number_format(filesize($file) / 1024, 2) . ' KB )';
         }
 
         return $files;
