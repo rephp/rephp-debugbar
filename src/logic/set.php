@@ -90,11 +90,12 @@ final class set
      * @param boolean $isCover 是否覆盖sql历史
      * @return bool
      */
-    public static function sql($sql, $runTime = 0)
+    public static function sql($sql, $runTime = 0, $style = 'common')
     {
         $pushData    = [
             'sql'      => $sql,
             'run_time' => $runTime,
+			'style'    => $style,
         ];
         data::$sql[] = $pushData;
 
