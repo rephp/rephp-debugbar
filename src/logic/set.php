@@ -90,9 +90,8 @@ final class set
      * @param boolean $isCover 是否覆盖sql历史
      * @return bool
      */
-    public static function sql($sql, $runTime = 0, $isCover = false)
+    public static function sql($sql, $runTime = 0)
     {
-        $isCover && data::$sql = [];
         $pushData    = [
             'sql'      => $sql,
             'run_time' => $runTime,
