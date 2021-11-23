@@ -21,7 +21,7 @@ class data
     /**
      * 定义message等级列表
      */
-    public $message_type_list = [
+    public static $message_type_list = [
         'info',
         'error',
         'log',
